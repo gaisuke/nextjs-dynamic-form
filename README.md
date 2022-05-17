@@ -26,4 +26,10 @@ npm run dev
 ## Tech Stack
 
 - NextJS
+- Typescript
+- Material-UI
+- axios
+- React-redux
+- Redux-toolkit
+- emotion
 - Vercel (for production)
