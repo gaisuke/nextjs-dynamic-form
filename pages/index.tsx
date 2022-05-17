@@ -18,7 +18,11 @@ import {
   Alert,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { fieldValue, postData, setFieldValue } from "../src/app.slice";
+import { 
+  fieldValue,
+  // postData,
+  setFieldValue
+} from "../src/app.slice";
 import { RootState } from "../src/store";
 import FieldBox from "../src/shared/FieldBox";
 
@@ -199,7 +203,8 @@ const isLoading = appState.status === "loading";
                     <FieldBox>
                         <Button
                             onClick={() => {
-                                dispatch(postData());
+                                // dispatch(postData());
+                                console.log("ini console di button, Submit Clicked!")
                             }}
                             disabled={isLoading}
                         >
