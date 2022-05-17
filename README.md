@@ -17,7 +17,7 @@ Install the package
 npm install
 ```
 
-Run project (for client)
+Run project
 
 ```bash
 npm run dev
