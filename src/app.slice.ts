@@ -39,29 +39,29 @@ const initialState: AppState = {
     error: null,
 };
 
-// export const postData = createAsyncThunk(
-//     "api/form",
-//     async (_, { getState }) => {
-//         const { app } = getState() as { app: AppState };
-//         const response = await axios.post(
-//             "/api/form",
-//             {
-//                 firstName: app.firstName,
-//                 lastName: app.lastName,
-//                 emailAddress: app.emailAddress,
-//                 [app.generatedStringField.label]:
-//                     app.generatedStringField.value,
-//                 gender: app.gender,
-//                 age: app.age,
-//                 testimonial: app.testimonial,
-//             },
-//             {
-//                 baseURL: process.env.NEXT_PUBLIC_API,
-//             }
-//         );
-//         return response;
-//     }
-// );
+export const postData = createAsyncThunk(
+    "api/form",
+    async (_, { getState }) => {
+        const { app } = getState() as { app: AppState };
+        const response = await axios.post(
+            "/api/form",
+            {
+                firstName: app.firstName,
+                lastName: app.lastName,
+                emailAddress: app.emailAddress,
+                [app.generatedStringField.label]:
+                    app.generatedStringField.value,
+                gender: app.gender,
+                age: app.age,
+                testimonial: app.testimonial,
+            },
+            {
+                baseURL: process.env.NEXT_PUBLIC_API,
+            }
+        );
+        return response;
+    }
+);
 
 export const appSlice = createSlice({
     name: "app",
@@ -76,19 +76,19 @@ export const appSlice = createSlice({
             state.error = action.payload;
         },
     },
-    // extraReducers(builder) {
-    //     builder
-    //         .addCase(postData.pending, (state, action) => {
-    //             state.status = "loading";
-    //         })
-    //         .addCase(postData.fulfilled, (state, action) => {
-    //             state.status = "succeeded";
-    //         })
-    //         .addCase(postData.rejected, (state, action) => {
-    //             state.status = "failed";
-    //             state.error = action.error.message;
-    //         });
-    // },
+    extraReducers(builder) {
+        builder
+            .addCase(postData.pending, (state, action) => {
+                state.status = "loading";
+            })
+            .addCase(postData.fulfilled, (state, action) => {
+                state.status = "succeeded";
+            })
+            .addCase(postData.rejected, (state, action) => {
+                state.status = "failed";
+                state.error = action.error.message;
+            });
+    },
 });
 
 export const { setFieldValue } = appSlice.actions;
